@@ -219,7 +219,7 @@ def fitdecaysin(xdata,ydata,fitparams=None,domain=None,showfit=False,showstartfi
         fitdatax=xdata
         fitdatay=ydata
     if fitparams is None:    
-        FFT=scipy.fft(fitdatay)
+        FFT=scipy.fft.fft(fitdatay)
         fft_freqs=scipy.fftpack.fftfreq(len(fitdatay),fitdatax[1]-fitdatax[0])
         max_ind=np.argmax(abs(FFT[4:int(len(fitdatay)/2)]))+4
         fft_val=FFT[max_ind]

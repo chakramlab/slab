@@ -6,6 +6,7 @@ import os.path
 import json
 
 from slab import SlabFile, InstrumentManager, get_next_filename, AttrDict, LocalInstruments
+from slab.instruments import PNAX
 
 
 class Experiment:
@@ -29,6 +30,9 @@ class Experiment:
         self.cfg = None
         if config_file is not None:
             self.config_file = os.path.join(path, config_file)
+            print(path, 'test0')
+            print(config_file, 'test')
+            print(self.config_file, 'test1')
         else:
             self.config_file = None
         self.im = InstrumentManager()
@@ -51,11 +55,12 @@ class Experiment:
                     cfg_str = fid.read()
 
             self.cfg = AttrDict(json.loads(cfg_str))
+            print(self.cfg, 'test2')
         except:
             pass
         if self.cfg is not None:
             for alias, inst in self.cfg['aliases'].items():
-                setattr(self, alias, self.im[inst])
+                setattr(self, alias, PNAX.N5242A(address="192.168.0.132"))
 
     def save_config(self):
         if self.config_file[:-3] != '.h5':
