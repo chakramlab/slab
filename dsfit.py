@@ -9,7 +9,7 @@ import numpy as np
 import math as math
 import matplotlib.pyplot as plt
 import scipy
-import scipy.fftpack
+import scipy.fft
 import cmath
 import numpy
 
@@ -224,14 +224,14 @@ def fitdecaysin(xdata,ydata,fitparams=None,domain=None,showfit=False,showstartfi
         max_ind=np.argmax(abs(FFT[4:int(len(fitdatay)/2)]))+4
         fft_val=FFT[max_ind]
         
-        fitparams=[0,0,0,0,0]
+        fitparams=[0,0,0,0,0,0]
         fitparams[4]=np.mean(fitdatay)
         fitparams[0]=(max(fitdatay)-min(fitdatay))/2.#2*abs(fft_val)/len(fitdatay)
         fitparams[1]=fft_freqs[max_ind]
         fitparams[2]=(cmath.phase(fft_val)-np.pi/2.)*180./np.pi
         fitparams[3]=(max(fitdatax)-min(fitdatax))
 
-        #fitparams[5]=fitdatax[0]
+        fitparams[5]=fitdatax[0]
         
     decaysin3 = lambda p, x: p[0] * np.sin(2. * np.pi * p[1] * x + p[2] * np.pi / 180.) * np.e ** (
     -1. * (x - fitdatax[0]) / p[3]) + p[4]
