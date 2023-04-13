@@ -4,6 +4,7 @@ __author__ = 'Nitrogen'
 # from dataserver import dataserver_client
 import os.path
 import json
+import numpy as np
 
 from slab import SlabFile, InstrumentManager, get_next_filename, AttrDict, LocalInstruments
 from slab.instruments import PNAX
@@ -53,9 +54,12 @@ class Experiment:
             else:
                 with open(self.config_file, 'r') as fid:
                     cfg_str = fid.read()
+                    # print(cfg_str)
 
+            # print('hi')
             self.cfg = AttrDict(json.loads(cfg_str))
-            print(self.cfg, 'test2')
+            # print(type(self.cfg), 'tester1')
+            # print(self.cfg, 'test2')
         except:
             pass
         if self.cfg is not None:
@@ -92,5 +96,24 @@ class Experiment:
 
     def go(self):
         pass
+
+    def save_data(self, data_path, filename, arrays={}, pts={}, save_config=True):
+        '''
+        arrays: dictionary of the arrays to save; key is name to save array as and value is the array
+        pts: dictionary of pts to save; same format as arrays
+        '''
+        file_path = data_path + '\\' + get_next_filename(data_path, filename, '.h5')
+        with SlabFile(file_path, 'a') as f:
+            for i in arrays:
+                f.append_line(i, arrays[i])
+            for i in pts:
+                f.append_pt(i, pts[i])
+            if save_config:
+                f.create_dataset('config', data=[str(self.cfg)])
+        print("File saved at", file_path)
+
+
+
+
 
 
