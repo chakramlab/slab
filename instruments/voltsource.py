@@ -355,5 +355,5 @@ if __name__ == "__main__":
     #srs=SRS900(address="COM17")
     #print srs.get_id()
     #srs.set_volt(.5,2)
-    yoko = YokogawaGS200(address='10.120.35.219')
+    yoko = YokogawaGS200(address='192.168.0.93')
     test_yoko(yoko)

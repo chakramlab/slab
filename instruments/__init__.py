@@ -10,7 +10,7 @@ from .localinstruments import LocalInstruments
 # from .spectrumanalyzer import E4440
 from .nwa import E5071
 from .PNAX import N5242A
-from.rfgenerators import N5183B
+from .rfgenerators import N5183B
 # from .rfgenerators import N5183B,E8257D,BNC845
 # from .cryostat import Triton
 # from .awg import *
@@ -45,8 +45,8 @@ except: print("Could not load XLN10014")
 # except: print("Could not load KEPCOPowerSupply")
 # try: from .voltsource import SRS900
 # except: print("Could not load SRS900")
-# try: from .voltsource import YokogawaGS200
-# except: print("Could not load YokogawaGS200")
+try: from .voltsource import YokogawaGS200
+except: print("Could not load YokogawaGS200")
 # from .Alazar import Alazar, AlazarConfig, AlazarConstants
 # try: from .Alazar import Alazar, AlazarConfig, AlazarConstants
 # except: print("Could not load Alazar card")

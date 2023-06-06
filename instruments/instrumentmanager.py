@@ -68,6 +68,7 @@ class InstrumentManager(dict):
             isComment = self.line_is_comment_or_empty(line);
             if not isComment:
                 name = self.parse_config_string(line)[0]
+                print(name, 'test0')
                 self[name] = self.load_instrument(line)
         print("!")
 

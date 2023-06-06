@@ -22,7 +22,8 @@ class N5242A(SocketInstrument):
     MAXSWEEPPTS = 1601
     default_port = 5025
 
-    def __init__(self, name="E5071", address=None, enabled=True, **kwargs):
+    def __init__(self, name="N5242A", address=None, enabled=True, **kwargs):
+        print(name, address)
         SocketInstrument.__init__(self, name, address, enabled=enabled, recv_length=2 ** 20, **kwargs)
         self.query_sleep = 0.05
         self.timeout = 100
@@ -685,6 +686,10 @@ class N5242A(SocketInstrument):
             self.set_averages_and_group_count(averages)
 
 
+# if __name__ == '__main__':
+#     na = N5242A("N5242A", address="192.168.14.242")
+#     print(na.get_id())
+
 if __name__ == '__main__':
-    na = N5242A("N5242A", address="192.168.14.242")
+    na = N5242A("N5242A", address="192.168.0.132")
     print(na.get_id())

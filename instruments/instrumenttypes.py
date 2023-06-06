@@ -171,6 +171,7 @@ class SocketInstrument(Instrument):
     def on_enable(self):
         if self.enabled:
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            print(self.ip, self.port, 'test1')
             self.socket.connect((self.ip, self.port))
             self.set_timeout(self.timeout)
             self.socket.setblocking(0)
