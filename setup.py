@@ -2,7 +2,7 @@
 setup.py - a module to allow package installation
 """
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 NAME = "slab"
 VERSION = "0.1"
@@ -11,7 +11,7 @@ DEPENDENCIES = [
     "pyro4",
     "scipy",
     "tabulate",
-    "visa"
+    "pyvisa"
 ]
 DESCRIPTION = "This package is used for Schuster Lab experiments"
 AUTHOR = "David Schuster"
@@ -20,7 +20,8 @@ AUTHOR_EMAIL = "david.schuster@uchicago.edu"
 setup(author=AUTHOR,
       author_email=AUTHOR_EMAIL,
       description=DESCRIPTION,
-      requires=DEPENDENCIES,
+      install_requires=DEPENDENCIES,
       name=NAME,
       version=VERSION,
+      packages=find_packages(),
 )
